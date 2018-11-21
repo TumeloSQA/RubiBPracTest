@@ -62,7 +62,7 @@
                     <td>@row["IDNumber"]</td>
                     <td>@row["StudentNumber"]</td>
                     <td>
-                        <button type="button" onclick="location.href='@Url.Action("Details", "StudentManagement", new {studentID = @row["StudentId"] })'">
+                        <button type="button" onclick="location.href='@Url.Action("Details", "StudentManagement", new {studentID = @row["StudentId"]})'">
                             View Data
                         </button>
                     </td>
@@ -70,6 +70,7 @@
             }
         </table>
     </fieldset>
+
 </body>
 
 </html>

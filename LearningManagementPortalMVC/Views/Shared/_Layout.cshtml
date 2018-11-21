@@ -22,7 +22,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "StudentManagement")</li>
                     <li>@Html.ActionLink("Capture Student Details (" + Convert.ToInt32(Session["studentCount"]) + ") ", "Create", "StudentManagement")</li>
-                    <li>@Html.ActionLink("Capture Course Details","Create", "CourseManagement")</li>
+                    <li>@Html.ActionLink("Capture Course Details", "Create", "CourseManagement")</li>
+                    <li>@Html.ActionLink("Enroll Students", "Enroll", "StudentManagement")</li>
                 </ul>
             </div>
         </div>

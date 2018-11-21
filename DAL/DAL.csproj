@@ -59,6 +59,8 @@
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\DbContext.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentCourseDto.cs" />
+    <Compile Include="Models\StudentCourseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

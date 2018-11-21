@@ -14,14 +14,18 @@ namespace ClientModules.ServiceImplementation
     public class StudentManagementRepository : IStudentManagementRepository
     {
         private DbConnect dbConn = new DbConnect();
+        private readonly PortalDbContext _context;
+
+        public StudentManagementRepository(PortalDbContext context)
+        {
+            _context = context;
+        }
         public DataSet GetStudents()
         {
             dbConn.OpenConnection();
 
             SqlCommand cmd = new SqlCommand("nsp_getStudents", dbConn.connection);
-
-            //Filter Client Details
-
+            
             SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
@@ -79,7 +83,5 @@ namespace ClientModules.ServiceImplementation
             string respMessage = student.FirstName + " Added Succesfully";
             return respMessage;
         }
-
-        
     }
 }

@@ -1,5 +1,7 @@
+using System.Data.Entity;
 using System.Web.Mvc;
 using ClientModules.ServiceImplementation;
+using DAL.Models;
 using Microsoft.Practices.Unity;
 using ServiceModules.ServiceModules;
 using Unity.Mvc3;
