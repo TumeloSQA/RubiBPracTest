@@ -3,15 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{2BEC0E38-DBB8-443B-AF83-6503ABF369D4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceModules", "ServiceModules\ServiceModules.csproj", "{8360929F-224C-48CE-AF7D-0AE72845CE94}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientModules", "ClientModules\ClientModules.csproj", "{E54F0648-282B-4FC4-BBFC-C6F3B5A23B3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningManagementPortalMVC", "LearningManagementPortalMVC\LearningManagementPortalMVC.csproj", "{8C99E31B-1B24-4861-993A-392E59D63803}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningManagementPortal", "LearningManagementPortal\LearningManagementPortal.csproj", "{BBF7E067-368F-49F3-9DE3-EBE0C45B7EFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningManagementPortal", "LearningManagementPortal\LearningManagementPortal.csproj", "{BBF7E067-368F-49F3-9DE3-EBE0C45B7EFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,22 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2BEC0E38-DBB8-443B-AF83-6503ABF369D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BEC0E38-DBB8-443B-AF83-6503ABF369D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BEC0E38-DBB8-443B-AF83-6503ABF369D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BEC0E38-DBB8-443B-AF83-6503ABF369D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8360929F-224C-48CE-AF7D-0AE72845CE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8360929F-224C-48CE-AF7D-0AE72845CE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8360929F-224C-48CE-AF7D-0AE72845CE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8360929F-224C-48CE-AF7D-0AE72845CE94}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E54F0648-282B-4FC4-BBFC-C6F3B5A23B3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E54F0648-282B-4FC4-BBFC-C6F3B5A23B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E54F0648-282B-4FC4-BBFC-C6F3B5A23B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E54F0648-282B-4FC4-BBFC-C6F3B5A23B3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C99E31B-1B24-4861-993A-392E59D63803}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C99E31B-1B24-4861-993A-392E59D63803}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C99E31B-1B24-4861-993A-392E59D63803}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C99E31B-1B24-4861-993A-392E59D63803}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BBF7E067-368F-49F3-9DE3-EBE0C45B7EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BBF7E067-368F-49F3-9DE3-EBE0C45B7EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBF7E067-368F-49F3-9DE3-EBE0C45B7EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,7 +26,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
 		SolutionGuid = {8114B1DA-E251-427D-ADDC-5ED347BE0301}
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
 	EndGlobalSection
 EndGlobal

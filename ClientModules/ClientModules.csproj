@@ -62,16 +62,6 @@
     <Compile Include="ServiceImplementation\StudentManagementRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{2BEC0E38-DBB8-443B-AF83-6503ABF369D4}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ServiceModules\ServiceModules.csproj">
-      <Project>{8360929F-224C-48CE-AF7D-0AE72845CE94}</Project>
-      <Name>ServiceModules</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

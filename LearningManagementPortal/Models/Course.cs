@@ -17,10 +17,10 @@ namespace LearningManagementPortal.Models
         public string CourseName { get; set; }
         
         [Display(Name = "Start Date ")]
-        public string StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
         
         [Display(Name = "End Date ")]
-        public string EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public string CourseNumber { get; set; }
 
         public ICollection<StudentCourse> StudentCourse { get; set; }

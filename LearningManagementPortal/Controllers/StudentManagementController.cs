@@ -8,12 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using LearningManagementPortal.Models;
 using LearningManagementPortal.Services;
 using System.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace LearningManagementPortal.Controllers
 {
     public class StudentManagementController : Controller
     {
         private readonly IStudentManagementRepository _repository;
+
         private readonly TestDB_MaremaneTPContext _context;
 
         public StudentManagementController(TestDB_MaremaneTPContext context, IStudentManagementRepository repository)
@@ -27,7 +29,30 @@ namespace LearningManagementPortal.Controllers
         {
             return View(_repository.GetStudents().ToList());
         }
+        public IActionResult Enroll()
+        {
+            ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "FirstName");
 
+            ViewBag.CourseId = new SelectList(_context.Course, "CourseId", "CourseName");
+
+            StudentCourse studentCourse = new StudentCourse();
+
+            return View(studentCourse);
+        }
+
+        [HttpPost]
+        public IActionResult Enroll(StudentCourse studentCourse)
+        {
+            _context.StudentCourse.Add(studentCourse);
+
+            _context.SaveChanges();
+
+            ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "FirstName", studentCourse.StudentId);
+
+            ViewBag.CourseId = new SelectList(_context.Course, "CourseId", "CourseName", studentCourse.CourseId);
+
+            return View(studentCourse);
+        }
         public ActionResult Details(int studentID)
         {
             DataSet ds = _repository.StudentDetails(studentID);

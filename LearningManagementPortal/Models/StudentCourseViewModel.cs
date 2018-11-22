@@ -13,14 +13,11 @@ namespace LearningManagementPortal.Models
         [Display(Name = "Course Name")]
         public string CourseName { get; set; }
         [Display(Name = "Start Date ")]
-        public DateTime? StartDate { get; set; }
-        [Display(Name = "End Date ")]
-        public DateTime? EndDate { get; set; }
-        [Display(Name = "First Name")]
+       
         public string FirstName { get; set; }
         [Display(Name = "Surname")]
         public string Surname { get; set; }
-        public IEnumerable<Student> Students { get; set; }
-        public IEnumerable<Course> Courses { get; set; }
+        //public IEnumerable<Student> Students { get; set; }
+        //public IEnumerable<Course> Courses { get; set; }
     }
 }

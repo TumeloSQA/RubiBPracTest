@@ -26,7 +26,7 @@ namespace LearningManagementPortal.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("CourseName,StartDate,EndDate")] Course course)
         {
-            if (DateTime.Parse(course.StartDate) < DateTime.Parse(course.EndDate))
+            if (course.StartDate < course.EndDate)
             {
                 if (ModelState.IsValid)
                 {
