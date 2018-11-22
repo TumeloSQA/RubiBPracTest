@@ -37,6 +37,7 @@ namespace LearningManagementPortal.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Course start date should not be after the course end date.");
+
                     return View();
                 }
             }

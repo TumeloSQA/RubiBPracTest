@@ -27,6 +27,10 @@ namespace LearningManagementPortal.Controllers
         // GET: StudentManagement
         public IActionResult Index()
         {
+            //ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "FirstName");
+
+            //ViewBag.CourseId = new SelectList(_context.Course, "CourseId", "CourseName");
+
             return View(_repository.GetStudents().ToList());
         }
         public IActionResult Enroll()
@@ -34,7 +38,7 @@ namespace LearningManagementPortal.Controllers
             ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "FirstName");
 
             ViewBag.CourseId = new SelectList(_context.Course, "CourseId", "CourseName");
-
+            
             StudentCourse studentCourse = new StudentCourse();
 
             return View(studentCourse);
@@ -43,14 +47,32 @@ namespace LearningManagementPortal.Controllers
         [HttpPost]
         public IActionResult Enroll(StudentCourse studentCourse)
         {
-            _context.StudentCourse.Add(studentCourse);
+            var studentCourses = _context.StudentCourse.Where(s => s.StudentId == studentCourse.StudentId).ToList();
 
-            _context.SaveChanges();
+            int courseCount = 0;
 
-            ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "FirstName", studentCourse.StudentId);
+            foreach (var scourse in studentCourses)
+            {
+                courseCount++;
+                if (courseCount >= 3)
+                {
+                    ModelState.AddModelError(string.Empty, "Student cannot register for more than 3 Courses.");
+                }
+                else if (scourse.CourseId == studentCourse.CourseId)
+                {
+                    ModelState.AddModelError(string.Empty, "Student already enrolled for this course");
+                }
+                else
+                {
+                    _context.StudentCourse.Add(studentCourse);
 
-            ViewBag.CourseId = new SelectList(_context.Course, "CourseId", "CourseName", studentCourse.CourseId);
+                    _context.SaveChanges();
 
+                    ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "FirstName", studentCourse.StudentId);
+
+                    ViewBag.CourseId = new SelectList(_context.Course, "CourseId", "CourseName", studentCourse.CourseId);
+                }
+            }
             return View(studentCourse);
         }
         public ActionResult Details(int studentID)
@@ -94,10 +116,7 @@ namespace LearningManagementPortal.Controllers
             }
             return View(student);
         }
-
-        // POST: StudentManagement/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,Surname,EmailAddress,Idnumber,StudentNumber")] Student student)
@@ -114,16 +133,9 @@ namespace LearningManagementPortal.Controllers
                     _context.Update(student);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
-                    if (!StudentExists(student.StudentId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw ex;
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -158,10 +170,6 @@ namespace LearningManagementPortal.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        private bool StudentExists(int id)
-        {
-            return _context.Student.Any(e => e.StudentId == id);
-        }
+        
     }
 }
