@@ -20,7 +20,12 @@ namespace LearningManagementPortalMVC.Controllers
             this._repository = repository;
             this._dbContext = dbContext;
         }
-       
+        public ActionResult GetStudents()
+        {
+                var product = (from p in _dbContext.Students
+                               select p).ToList();
+                return View(product);
+        }
         // GET: StudentManagement
         public ActionResult Index()
         {
@@ -47,11 +52,11 @@ namespace LearningManagementPortalMVC.Controllers
 
             _da.Fill(_dt);
 
-            _daCourse.Fill(_dt);
+            _daCourse.Fill(_dtCourse);
 
             ViewBag.StudentName = ToSelectList(_dt, "StudentId", "FirstName");
 
-            ViewBag.CourseName = ToSelectList(_dt, "CourseId", "CourseName");
+            ViewBag.CourseName = ToSelectList(_dtCourse, "CourseId", "CourseName");
 
             return View();
         }
@@ -59,7 +64,34 @@ namespace LearningManagementPortalMVC.Controllers
         [HttpPost]
         public ActionResult Enroll(StudentCourseDto studentCourseDto)
         {
-            return View();
+            SqlConnection _con = new SqlConnection("Data Source=.;Initial Catalog=TestDB_Tumelo;Integrated Security=True");
+
+            SqlDataAdapter _da = new SqlDataAdapter("SELECT * from Student", _con);
+
+            SqlDataAdapter _daCourse = new SqlDataAdapter("select * from course", _con);
+
+            DataTable _dt = new DataTable();
+
+            DataTable _dtCourse = new DataTable();
+
+            _da.Fill(_dt);
+
+            _daCourse.Fill(_dtCourse);
+
+            ViewBag.StudentName = new SelectList(_dt.ToString(), "StudentId", "FirstName", studentCourseDto.StudentId);
+            ViewBag.CourseName = new SelectList(_dtCourse.ToString(), "CourseId", "CourseName", studentCourseDto.CourseId);
+            
+            _con.Open();
+            SqlCommand cmd = new SqlCommand("nsp_insertStudentCourse @studentID, @CourseID", _con);
+
+            //Insert Student Details
+            cmd.Parameters.Add("@studentID", SqlDbType.Int).Value = studentCourseDto.StudentId;
+            cmd.Parameters.Add("@CourseID", SqlDbType.Int).Value = studentCourseDto.CourseId;
+
+           
+            cmd.ExecuteNonQuery();
+
+            return View(studentCourseDto);
         }
 
         // GET: StudentManagement

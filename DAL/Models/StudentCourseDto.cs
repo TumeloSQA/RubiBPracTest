@@ -9,17 +9,10 @@ namespace DAL.Models
 {
     public class StudentCourseDto
     {
+        [Key]
+        public int StudentCourseID { get; set; }
         public int CourseId { get; set; }
-
-        [Required(ErrorMessage = "Course Name is a required field")]
-
-        [Display(Name = "Course Name")]
-        public string CourseName { get; set; }
-
+        
         public int StudentId { get; set; }
-
-        [Required(ErrorMessage = "First Name is a required field")]
-        [Display(Name = "First Name ")]
-        public string FirstName { get; set; }
     }
 }

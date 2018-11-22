@@ -232,6 +232,7 @@
     <Content Include="Views\StudentManagement\Details.cshtml" />
     <Content Include="Views\CourseManagement\Create.cshtml" />
     <Content Include="Views\StudentManagement\Enroll.cshtml" />
+    <Content Include="Views\StudentManagement\GetStudents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

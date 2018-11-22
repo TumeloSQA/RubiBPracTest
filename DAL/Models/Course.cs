@@ -9,11 +9,6 @@ namespace DAL.Models
 {
     public partial class Course
     {
-        public Course()
-        {
-            this.Students = new HashSet<Student>();
-        }
-        
         public int CourseId { get; set; }
 
         [Required(ErrorMessage = "Course Name is a required field")]
@@ -21,8 +16,5 @@ namespace DAL.Models
         public string CourseName { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
-        //public string CourseNumber { get; set; }
-        
-        public virtual ICollection<Student> Students { get; set; }
     }
 }
