@@ -62,7 +62,7 @@ namespace LearningManagementPortal.Controllers
                 {
                     ModelState.AddModelError(string.Empty, "Student already enrolled for this course");
                 }
-                else
+                else if (courseCount < 3 && scourse.CourseId == studentCourse.CourseId)
                 {
                     _context.StudentCourse.Add(studentCourse);
 
@@ -99,76 +99,6 @@ namespace LearningManagementPortal.Controllers
             }
 
             return View(student);
-        }
-
-        // GET: StudentManagement/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var student = await _context.Student.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-            return View(student);
-        }
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentId,FirstName,Surname,EmailAddress,Idnumber,StudentNumber")] Student student)
-        {
-            if (id != student.StudentId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(student);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException ex)
-                {
-                    throw ex;
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(student);
-        }
-
-        // GET: StudentManagement/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var student = await _context.Student
-                .FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            return View(student);
-        }
-
-        // POST: StudentManagement/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var student = await _context.Student.FindAsync(id);
-            _context.Student.Remove(student);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
         
     }

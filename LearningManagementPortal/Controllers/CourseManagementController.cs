@@ -34,14 +34,12 @@ namespace LearningManagementPortal.Controllers
                     _context.SaveChangesAsync();
                     return RedirectToAction("Index", "StudentManagement");
                 }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Course start date should not be after the course end date.");
-
-                    return View();
-                }
             }
-                    return View(course);
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Course start date should not be after the course end date.");
+            }
+            return View(course);
         }
     }
 }
