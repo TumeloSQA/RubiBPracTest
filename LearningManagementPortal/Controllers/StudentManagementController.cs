@@ -27,9 +27,6 @@ namespace LearningManagementPortal.Controllers
         // GET: StudentManagement
         public IActionResult Index()
         {
-            //ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "FirstName");
-
-            //ViewBag.CourseId = new SelectList(_context.Course, "CourseId", "CourseName");
 
             return View(_repository.GetStudents().ToList());
         }
@@ -47,7 +44,7 @@ namespace LearningManagementPortal.Controllers
         [HttpPost]
         public IActionResult Enroll(StudentCourse studentCourse)
         {
-            var studentCourses = _context.StudentCourse.Where(s => s.StudentId == studentCourse.StudentId).ToList();
+            List<StudentCourse> studentCourses = _context.StudentCourse.Where(s => s.StudentId == studentCourse.StudentId).ToList();
 
             int courseCount = 0;
 
@@ -62,17 +59,18 @@ namespace LearningManagementPortal.Controllers
                 {
                     ModelState.AddModelError(string.Empty, "Student already enrolled for this course");
                 }
-                else if (courseCount < 3 && scourse.CourseId == studentCourse.CourseId)
+                else if (courseCount < 3 && scourse.CourseId != studentCourse.CourseId)
                 {
                     _context.StudentCourse.Add(studentCourse);
 
                     _context.SaveChanges();
-
-                    ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "FirstName", studentCourse.StudentId);
-
-                    ViewBag.CourseId = new SelectList(_context.Course, "CourseId", "CourseName", studentCourse.CourseId);
                 }
             }
+            
+            ViewBag.StudentId = new SelectList(_context.Student, "StudentId", "FirstName", studentCourse.StudentId);
+
+            ViewBag.CourseId = new SelectList(_context.Course, "CourseId", "CourseName", studentCourse.CourseId);
+
             return View(studentCourse);
         }
         public ActionResult Details(int studentID)
@@ -94,7 +92,7 @@ namespace LearningManagementPortal.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(student);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
 
